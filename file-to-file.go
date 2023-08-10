@@ -6,9 +6,10 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sync"
 )
 
-func F2F() {
+func F2F(wg *sync.WaitGroup) {
 	f, err := os.Open("Large-File.json")
 	create, err := os.Create("./files/Large-File2.json")
 
@@ -88,5 +89,6 @@ func F2F() {
 		}
 	}
 	fmt.Println(topLevel)
+	wg.Done()
 	
 }

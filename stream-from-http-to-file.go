@@ -6,9 +6,10 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"sync"
 )
 
-func S2F() {
+func S2F(wg *sync.WaitGroup) {
 	response, err := http.Get("https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json")
 
 	if err != nil {
@@ -34,4 +35,5 @@ func S2F() {
 		}
 		writer.Write(readBytes[:n])
 	}
+	wg.Done()
 }

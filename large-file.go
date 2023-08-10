@@ -6,9 +6,10 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sync"
 )
 
-func LargeFile() {
+func LargeFile(wg *sync.WaitGroup) {
 	f, err := os.Open("Large-File.json")
 	if err != nil {
 		panic(err)
@@ -73,4 +74,5 @@ func LargeFile() {
 		}
 	}
 	fmt.Println(topLevel)
+	wg.Done()
 }

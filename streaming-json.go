@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"sync"
 )
 
-func StreaminJson() {
+func StreaminJson(wg *sync.WaitGroup) {
 	response, err := http.Get("https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json")
 
 	if err != nil {
@@ -35,4 +36,5 @@ func StreaminJson() {
 		fmt.Println(movie)
 		count++
 	}
+	wg.Done()
 }
