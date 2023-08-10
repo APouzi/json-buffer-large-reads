@@ -9,8 +9,8 @@ import (
 )
 
 func F2F() {
-	f, err := os.Open("./files/Large-File.json")
-	create, err := os.Create("Large-File2.json")
+	f, err := os.Open("Large-File.json")
+	create, err := os.Create("./files/Large-File2.json")
 
 	if err != nil {
 		panic(err)
